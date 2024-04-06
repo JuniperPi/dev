@@ -1,32 +1,27 @@
 # A basic C++ makefile for my code
 
 # Name of executable
-BIN = dev
+NAME = dev
 
 # directories of significance
 BDIR   = ../bin
-LDIR   = ../lib
+# LDIR   = ../lib # currently empty
 ODIR   = ../obj
 OUTDIR = ../out
 
 # combine binary and its directory into one path
-BPATH = $(BDIR)/$(BIN)
+BPATH = $(BDIR)/$(NAME)
 
 # compiler and flags
 CXX = g++
 
 # I keep my includes in my src directory, along with my makefiles
 CXXFLAGS  = -I.
-# I want OUTDIR to be available to my C++ binary
 CXXFLAGS += -DOUTDIR=\"$(shell realpath $(OUTDIR))\"
 CXXFLAGS += -std=c++17
-#CXXFLAGS += -funsigned-char
 
 # C++ source files to compile
 SRCS = dev.cc
-
-# DEPS needs to be auto generated, baby steps
-DEPS = dev.hh pixel.hh ppm.hh draw_hilbert.hh
 
 # for each .cc file here, make a .o file in $(ODIR)
 OBJS = $(patsubst %.cc,$(ODIR)/%.o,$(SRCS))
